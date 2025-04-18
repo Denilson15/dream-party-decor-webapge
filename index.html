@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dream Party Decor</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,900&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+    </head>
+    <body>
+        <section class="intro">
+            <h1>Make <strong>your dream event come true!</strong> Custom party decor, balloons and <strong> more</strong></h1>
+            <span class="team-text">Dream party decor</span>
+            <p class="top-text">Powered by Drea</p>
+        </section>
+        
+        <main class="main-content">
+            <img class="img-main" src="images/main-img.jpg" alt="Dream Party Decor Logo.">
+            <h2>Dream party decor</h2>
+            <span class="subheading">LET’S MAKE YOUR CELEBRATION UNFORGETTABLE</span>
+            
+            <p>Have an event in mind? We’d love to hear about it! Fill out the form below with your details, and our team will reach out as soon as possible to get started. We’ll contact you regarding availability and party details as soon as possible to start planning something unforgettable.</p>
+            
+            <form>
+                <input type="text" id="name" required placeholder="Name" aria-label="Name">
+                <input type="email" id="email" required  placeholder="Email" aria-label="Email">
+                <input type="tel" id="phone" required pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="Phone Number" aria-label="Phone">
+                <input  type="date"
+                        id="date" value="2024-04-22"
+                        min="2025-06-01"
+                        max="2026-12-31" />
+                <button class="btn btn-primary" id="submit-btn">Submit</button>
+            </form>   
+            <p class="fine-print">We'll never share your information without permission</p>
+        </main>
+    </body>
+</html>
