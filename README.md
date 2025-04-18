@@ -1,19 +1,41 @@
-# Getting Started
-Install the dependencies and run the project
-```
-npm install
-npm start
-```
+# Dream Party Decor Contact Page
 
-Head over to https://vitejs.dev/ to learn more about configuring vite
-## About Scrimba
+This is a personalized contact page for **Dream Party Decor**, built on top of a baseline design originally provided by Scrimba.
 
-At Scrimba our goal is to create the best possible coding school at the cost of a gym membership! 💜
-If we succeed with this, it will give anyone who wants to become a software developer a realistic shot at succeeding, regardless of where they live and the size of their wallets 🎉
-The Frontend Developer Career Path aims to teach you everything you need to become a Junior Developer, or you could take a deep-dive with one of our advanced courses 🚀
+## ✨ Overview
 
-- [Our courses](https://scrimba.com/allcourses)
-- [The Frontend Career Path](https://scrimba.com/learn/frontend)
-- [Become a Scrimba Pro member](https://scrimba.com/pricing)
+The site features a clean, mobile and desktop friendly design with a contact form for users to submit their event details, including:
+- Name
+- Email
+- Phone Number
+- Event Date
 
-Happy Coding!
+A thank-you message will eventually be displayed upon submission.
+
+## 🛠️ Personalization
+
+While the original layout and styling were provided by Scrimba, the following changes were made:
+- Updated branding, colors, and logo to reflect **Dream Party Decor**
+- Modified copy/text to match business tone and purpose
+- Adjusted form fields for relevant event contact details
+
+## 🚧 Functionality (To Be Added)
+
+- JavaScript will be added to:
+  - Capture and log form data
+  - Display a thank-you confirmation message
+  - Potentially integrate with a backend or service to store submissions
+
+## 📸 Before Customization
+
+The original Scrimba template featured a form for uploading images to create custom avatars. The design has since been repurposed for event-based contact collection.
+
+## 🗂️ File Structure (basic)
+
+- `index.html` – main structure of the contact form
+- `style.css` – styling for the layout
+- `script.js` (planned) – for handling form submissions
+
+---
+
+Stay tuned for updates as functionality gets added!
