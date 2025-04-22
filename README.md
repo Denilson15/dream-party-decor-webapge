@@ -18,6 +18,13 @@ The site features a clean, mobile and desktop friendly design with a contact for
 
 A thank-you message will eventually be displayed upon submission.
 
+## ⚙️ How It Works
+
+- The contact form includes fields for name, email, phone number, and event date.
+- Once submitted (future feature), a thank-you message will be shown to the user.
+- The current version is static, with JavaScript functionality to be added for handling form submissions and storing responses.
+- The layout is built using Flexbox to ensure mobile and desktop compatibility.
+
 ## 🛠️ Personalization
 
 While the original layout and styling were provided by Scrimba, the following changes were made:
