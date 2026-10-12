@@ -29,8 +29,8 @@ import Icon from "./Icon.astro";
             {s.includes.map((i) => <li class="flex gap-2"><Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-rose-600" />{i}</li>)}
           </ul>
           <div class="mt-auto pt-6">
-            <a href={site.instagram.dm} target="_blank" rel="noopener" class:list={[s.featured ? "btn-primary" : "btn-ghost", "w-full"]}>
-              Get a quote<span class="sr-only"> for {s.title}</span>
+            <a href="#book" data-book data-package={s.title} class:list={[s.featured ? "btn-primary" : "btn-ghost", "w-full"]}>
+              Book this package<span class="sr-only">: {s.title}</span>
             </a>
           </div>
         </article>

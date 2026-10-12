@@ -13,12 +13,10 @@ const year = new Date().getFullYear();
       <p class="mt-4 max-w-xs text-sm text-ink-soft">{site.description}</p>
     </div>
     <div>
-      <h2 class="font-sans text-sm font-semibold uppercase tracking-widest text-gold">Contact</h2>
+      <h2 class="font-sans text-sm font-semibold uppercase tracking-widest text-gold">Connect</h2>
       <ul class="mt-4 space-y-3 text-sm">
         <li><a class="flex items-center gap-2 hover:text-rose-600" href={site.instagram.url} target="_blank" rel="noopener"><Icon name="instagram" class="h-4 w-4" /> @{site.instagram.handle}</a></li>
-        <li><a class="flex items-center gap-2 hover:text-rose-600" href={site.sms}><Icon name="message" class="h-4 w-4" /> Text {site.phoneDisplay}</a></li>
-        <li><a class="flex items-center gap-2 hover:text-rose-600" href={site.tel}><Icon name="phone" class="h-4 w-4" /> Call {site.phoneDisplay}</a></li>
-        <li><a class="flex items-center gap-2 hover:text-rose-600" href={`mailto:${site.email}`}><Icon name="mail" class="h-4 w-4" /> {site.email}</a></li>
+        <li><a class="flex items-center gap-2 hover:text-rose-600" href="#book"><Icon name="message" class="h-4 w-4" /> Request a booking</a></li>
       </ul>
     </div>
     <div>

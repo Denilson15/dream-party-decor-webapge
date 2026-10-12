@@ -4,6 +4,10 @@ export type Service = {
   category: "Balloons" | "Rentals" | "Custom Decor" | "Banners" | "Grad Leis";
   price: string;
   unit?: string;
+  /** For per-unit items: what the customer picks a quantity of (e.g. "letters"). */
+  qty?: string;
+  /** Can be added on top of another package in the booking form. */
+  addon?: boolean;
   description: string;
   includes: string[];
   featured?: boolean;
@@ -13,6 +17,7 @@ export type Service = {
 export const services: Service[] = [
   {
     title: "Balloon Garland",
+    addon: true,
     category: "Balloons",
     price: "$175",
     description: "An organic, multi-size garland in your colors. Perfect over a dessert table, doorway or mantle.",
@@ -35,14 +40,17 @@ export const services: Service[] = [
   },
   {
     title: "Light-Up Marquee Letters",
+    addon: true,
     category: "Rentals",
     price: "$45",
     unit: "/ letter",
+    qty: "letters",
     description: "Glowing names, numbers and initials that make any setup unforgettable.",
     includes: ["Names, ages & initials", "Pairs with any balloon design", "Delivery & setup"],
   },
   {
     title: "White Bounce House",
+    addon: true,
     category: "Rentals",
     price: "$295",
     description: "The modern, Instagram-worthy bounce house for birthdays, showers and backyard parties.",
@@ -57,6 +65,7 @@ export const services: Service[] = [
   },
   {
     title: "Custom Banners",
+    addon: true,
     category: "Banners",
     price: "$45",
     description: "Personalized banners and signage with names, dates and themes to match your decor.",
@@ -64,10 +73,14 @@ export const services: Service[] = [
   },
   {
     title: "Graduation Leis",
+    addon: true,
     category: "Grad Leis",
     price: "$25",
     unit: "each",
+    qty: "leis",
     description: "Handmade ribbon, candy and money leis in school colors for your graduate.",
     includes: ["School colors", "Ribbon, candy or money", "Bulk pricing available"],
   },
 ];
+
+export const priceValue = (s: Service) => Number(s.price.replace(/[^0-9.]/g, ""));

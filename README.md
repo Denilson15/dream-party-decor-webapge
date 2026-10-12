@@ -8,7 +8,7 @@ Live site: [dreampartydecor.netlify.app](https://dreampartydecor.netlify.app)
 
 - [Astro](https://astro.build) (static site) + [Tailwind CSS v4](https://tailwindcss.com)
 - Deployed on Netlify (`netlify.toml`: build `npm run build`, publish `dist`)
-- Contact goes through Instagram DMs, text and phone links (no form or backend)
+- Booking form (`src/components/Booking.astro`): visitors must pick a package, then it writes a ready-to-send message with an estimated starting total. They send it by text, Instagram DM (copied to the clipboard) or email. No backend needed.
 
 ## Run locally
 

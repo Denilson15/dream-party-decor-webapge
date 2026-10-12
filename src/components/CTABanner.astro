@@ -1,5 +1,4 @@
 ---
-import { site } from "../config/site";
 import Icon from "./Icon.astro";
 ---
 <section class="py-20 sm:py-28">
@@ -10,10 +9,9 @@ import Icon from "./Icon.astro";
       <div class="relative">
         <p class="font-script text-3xl text-blush-200">Let's celebrate</p>
         <h2 class="mx-auto mt-2 max-w-2xl text-3xl leading-tight sm:text-5xl">Your date won't hold itself. Let's start planning.</h2>
-        <p class="mx-auto mt-5 max-w-xl text-white/75">Send your date, location and theme. We'll reply with ideas and a custom quote.</p>
+        <p class="mx-auto mt-5 max-w-xl text-white/75">Pick a package, add your details, and your message is ready to send in a minute.</p>
         <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          <a href={site.instagram.dm} target="_blank" rel="noopener" class="btn-primary text-base"><Icon name="instagram" /> DM on Instagram</a>
-          <a href={site.sms} class="btn border border-white/30 text-base text-white hover:bg-white hover:text-ink"><Icon name="message" /> Text {site.phoneDisplay}</a>
+          <a href="#book" data-book class="btn-primary text-base"><Icon name="sparkle" /> Start my booking request</a>
         </div>
       </div>
     </div>

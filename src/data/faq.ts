@@ -5,7 +5,7 @@ export const faq = [
   },
   {
     q: "How do I reserve my date?",
-    a: "Send us a DM or text with your date, location, theme and colors. We'll send a custom quote, and a non-refundable deposit locks in your date.",
+    a: "Use the booking form on this page: choose a package, add your date and details, and send the ready-made message by text, Instagram or email. Andrea will confirm availability and your final quote, and a non-refundable deposit locks in your date.",
   },
   {
     q: "What areas do you serve?",

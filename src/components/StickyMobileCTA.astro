@@ -1,10 +1,9 @@
 ---
-import { site } from "../config/site";
 import Icon from "./Icon.astro";
 ---
 <div class="fixed inset-x-0 bottom-0 z-40 border-t border-blush-200 bg-cream/95 p-3 backdrop-blur lg:hidden">
   <div class="mx-auto grid max-w-md grid-cols-2 gap-3">
-    <a href={site.instagram.dm} target="_blank" rel="noopener" class="btn-primary !px-3"><Icon name="instagram" class="h-4 w-4" /> DM us</a>
-    <a href={site.sms} class="btn-ghost !px-3"><Icon name="message" class="h-4 w-4" /> Text us</a>
+    <a href="#book" data-book class="btn-primary !px-3"><Icon name="sparkle" class="h-4 w-4" /> Book your date</a>
+    <a href="#services" class="btn-ghost !px-3">See packages</a>
   </div>
 </div>
