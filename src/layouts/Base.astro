@@ -33,7 +33,13 @@ const jsonLd = {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
-    <script is:inline>document.documentElement.classList.add("js");</script>
+    <script is:inline>
+      document.documentElement.classList.add("js");
+      // Always open on the hero: drop any #section from the URL and don't restore old scroll positions.
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+      window.addEventListener("load", () => window.scrollTo(0, 0));
+    </script>
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
@@ -46,6 +52,18 @@ const jsonLd = {
         { threshold: 0.12 },
       );
       document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      // In-page links scroll smoothly without writing #section into the address bar,
+      // so a copied or shared URL always opens on the hero.
+      document.addEventListener("click", (e) => {
+        const a = (e.target as Element).closest<HTMLAnchorElement>('a[href^="#"]');
+        if (!a) return;
+        const target = document.getElementById(a.getAttribute("href")!.slice(1));
+        if (!target) return;
+        e.preventDefault();
+        const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        target.scrollIntoView({ behavior: smooth ? "smooth" : "auto" });
+      });
     </script>
   </body>
 </html>
