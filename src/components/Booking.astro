@@ -1,0 +1,271 @@
+---
+import { services, priceValue } from "../data/services";
+import { site } from "../config/site";
+import Icon from "./Icon.astro";
+
+const data = {
+  services: services.map((s) => ({ title: s.title, price: priceValue(s), qty: s.qty ?? null, defaultQty: s.defaultQty ?? 1, bundles: s.bundles ?? [] })),
+  owner: site.owner,
+  zones: site.travelZones,
+  sms: site.sms,
+  dm: site.instagram.dm,
+  email: site.email,
+};
+const eventTypes = ["Birthday", "Baby shower", "Bridal shower", "Gender reveal", "Graduation", "Quinceañera", "Wedding", "Corporate event", "Other"];
+const field = "mt-1.5 w-full rounded-xl border border-blush-200 bg-white px-4 py-3 text-base outline-none transition focus:border-rose-600 focus:ring-2 focus:ring-rose-600/20";
+const label = "block text-sm font-semibold";
+---
+<section id="book" class="bg-gradient-to-b from-cream via-blush-50 to-cream py-20 sm:py-28">
+  <div class="container-site">
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <p class="eyebrow">Plan your party</p>
+      <h2 class="section-title">Build your request in <em class="text-rose-600">one minute</em></h2>
+      <p class="mt-4 text-ink-soft">Choose a package and tell us about your event. We'll write the message for you, so all you have to do is hit send.</p>
+    </div>
+
+    <script type="application/json" id="booking-data" set:html={JSON.stringify(data)} />
+
+    <div class="mt-12 grid gap-8 lg:grid-cols-5">
+      <form id="booking-form" class="reveal space-y-5 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-blush-200 sm:p-8 lg:col-span-3" novalidate>
+        <div>
+          <label for="bk-package" class={label}>Package <span class="text-rose-600">*</span></label>
+          <select id="bk-package" name="package" required class={field}>
+            <option value="">Choose a package…</option>
+            {([["package", "Decor packages"], ["rental", "Rentals & extras"]] as const).map(([g, name]) => (
+              <optgroup label={name}>
+                {services.filter((s) => s.group === g).map((s) => <option value={s.title}>{s.title} · from {s.price}{s.unit ? ` ${s.unit}` : ""}</option>)}
+              </optgroup>
+            ))}
+          </select>
+          <div id="bk-qty-wrap" class="mt-3 hidden">
+            <label for="bk-qty" class="text-sm text-ink-soft">How many <span data-qty-label></span>?</label>
+            <input id="bk-qty" type="number" min="1" max="200" value="4" class={field + " max-w-32"} />
+          </div>
+        </div>
+
+        <fieldset>
+          <legend class={label}>Add-ons <span class="font-normal text-ink-soft">(optional)</span></legend>
+          <div id="bk-addons" class="mt-2 grid gap-2 sm:grid-cols-2">
+            {services.filter((s) => s.addon).map((s) => (
+              <div data-addon={s.title} class="group rounded-xl border border-blush-200 bg-cream px-4 py-3 has-[:checked]:border-rose-600 has-[:checked]:bg-blush-50">
+                <label class="flex cursor-pointer items-start gap-3 text-sm">
+                  <input type="checkbox" value={s.title} class="mt-0.5 h-4 w-4 accent-rose-600" />
+                  <span><span class="font-medium">{s.title}</span><br /><span class="text-ink-soft">from {s.price}{s.unit ? ` ${s.unit}` : ""}</span></span>
+                </label>
+                {s.qty && (
+                  <label class="mt-2 hidden items-center gap-2 text-sm text-ink-soft group-has-[:checked]:flex">
+                    How many {s.qty}?
+                    <input type="number" min="1" max="200" value={s.defaultQty ?? 1} data-addon-qty class="w-20 rounded-lg border border-blush-200 bg-white px-2 py-1" />
+                  </label>
+                )}
+              </div>
+            ))}
+          </div>
+        </fieldset>
+
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div>
+            <label for="bk-event" class={label}>Type of event <span class="text-rose-600">*</span></label>
+            <select id="bk-event" required class={field}>
+              <option value="">Select…</option>
+              {eventTypes.map((e) => <option>{e}</option>)}
+            </select>
+          </div>
+          <div>
+            <label for="bk-date" class={label}>Event date <span class="text-rose-600">*</span></label>
+            <input id="bk-date" type="date" required class={field} />
+          </div>
+          <div class="sm:col-span-2">
+            <label for="bk-zone" class={label}>Event area <span class="text-rose-600">*</span></label>
+            <select id="bk-zone" required class={field}>
+              <option value="">Select your area…</option>
+              {site.travelZones.map((z, i) => (
+                <option value={i}>{z.name}: {z.fee ? `+$${z.fee} travel` : "delivery included"} ({z.areas})</option>
+              ))}
+            </select>
+            <p class="mt-1.5 text-xs text-ink-soft">Travel is measured from {site.homeBase}. Outside these areas? Choose the closest one and Andrea will confirm.</p>
+          </div>
+          <div>
+            <label for="bk-city" class={label}>City <span class="text-rose-600">*</span></label>
+            <input id="bk-city" type="text" required placeholder="e.g. Hayward" autocomplete="address-level2" class={field} />
+          </div>
+          <div>
+            <label for="bk-setting" class={label}>Indoor or outdoor?</label>
+            <select id="bk-setting" class={field}>
+              <option value="">Not sure yet</option>
+              <option>Indoor</option>
+              <option>Outdoor</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="bk-theme" class={label}>Theme & colors <span class="font-normal text-ink-soft">(optional)</span></label>
+          <input id="bk-theme" type="text" placeholder="e.g. Sage green & gold, safari theme" class={field} />
+        </div>
+        <div>
+          <label for="bk-name" class={label}>Your name <span class="text-rose-600">*</span></label>
+          <input id="bk-name" type="text" required autocomplete="name" class={field} />
+        </div>
+      </form>
+
+      <div class="reveal lg:col-span-2">
+        <div class="sticky top-24 rounded-3xl bg-ink p-6 text-white shadow-xl sm:p-8">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-gold-light">Your request</p>
+          <p class="mt-3 flex items-baseline gap-2">
+            <span class="text-sm text-white/70">Estimated starting total</span>
+            <span id="bk-total" class="font-serif text-4xl font-semibold">$0</span>
+          </p>
+          <label for="bk-message" class="sr-only">Message preview</label>
+          <textarea id="bk-message" readonly rows="14" class="mt-5 w-full resize-none rounded-2xl bg-white/10 p-4 text-sm leading-relaxed text-white/90 outline-none"></textarea>
+          <p id="bk-hint" class="mt-3 text-sm text-blush-200" aria-live="polite">Choose a package and fill in the required fields to send.</p>
+          <div class="mt-5 grid gap-3">
+            <button type="button" data-send="sms" class="btn-primary text-base"><Icon name="message" /> Send as a text</button>
+            <button type="button" data-send="instagram" class="btn border border-white/30 text-base text-white hover:bg-white hover:text-ink"><Icon name="instagram" /> Copy & open Instagram DM</button>
+            <button type="button" data-send="email" class="btn text-sm text-white/80 underline-offset-4 hover:underline"><Icon name="mail" class="h-4 w-4" /> Send by email instead</button>
+          </div>
+          <p class="mt-4 text-xs text-white/60">Prices are starting rates. Final quote depends on size, design and location.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  type Svc = { title: string; price: number; qty: string | null; defaultQty: number; bundles: string[] };
+  const data = JSON.parse(document.getElementById("booking-data")!.textContent!) as {
+    services: Svc[]; owner: string; zones: { name: string; fee: number }[]; sms: string; dm: string; email: string;
+  };
+  const byTitle = new Map(data.services.map((s) => [s.title, s]));
+  const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+
+  const form = $<HTMLFormElement>("booking-form");
+  const pkg = $<HTMLSelectElement>("bk-package");
+  const qtyWrap = $("bk-qty-wrap");
+  const qty = $<HTMLInputElement>("bk-qty");
+  const date = $<HTMLInputElement>("bk-date");
+  const message = $<HTMLTextAreaElement>("bk-message");
+  const total = $("bk-total");
+  const hint = $("bk-hint");
+  const addonBoxes = Array.from(document.querySelectorAll<HTMLElement>("[data-addon]"));
+
+  const today = new Date();
+  date.min = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+
+  const money = (n: number) => `$${n.toLocaleString("en-US")}`;
+  const val = (id: string) => $<HTMLInputElement>(id).value.trim();
+  const count = (input: HTMLInputElement) => Math.max(1, Math.floor(Number(input.value) || 1));
+
+  function lineFor(s: Svc, n: number) {
+    return s.qty ? `${s.title} × ${n} ${s.qty} (${money(s.price * n)})` : `${s.title} (from ${money(s.price)})`;
+  }
+
+  let lastPkg = "";
+  function build() {
+    const p = byTitle.get(pkg.value);
+    if (pkg.value !== lastPkg) {
+      lastPkg = pkg.value;
+      if (p?.qty) qty.value = String(p.defaultQty);
+    }
+    qtyWrap.classList.toggle("hidden", !p?.qty);
+    if (p?.qty) qtyWrap.querySelector("[data-qty-label]")!.textContent = p.qty;
+
+    // An add-on can't duplicate the chosen package or anything it already includes.
+    addonBoxes.forEach((box) => {
+      const same = box.dataset.addon === pkg.value || !!p?.bundles.includes(box.dataset.addon!);
+      box.classList.toggle("hidden", same);
+      if (same) box.querySelector<HTMLInputElement>("input[type=checkbox]")!.checked = false;
+    });
+
+    let sum = 0;
+    const lines: string[] = [];
+    if (p) {
+      const n = p.qty ? count(qty) : 1;
+      sum += p.price * n;
+      lines.push(`• Package: ${lineFor(p, n)}`);
+    }
+    const addons = addonBoxes
+      .filter((b) => b.querySelector<HTMLInputElement>("input[type=checkbox]")!.checked)
+      .map((b) => {
+        const s = byTitle.get(b.dataset.addon!)!;
+        const q = b.querySelector<HTMLInputElement>("[data-addon-qty]");
+        const n = s.qty && q ? count(q) : 1;
+        sum += s.price * n;
+        return lineFor(s, n);
+      });
+    if (addons.length) lines.push(`• Add-ons: ${addons.join(", ")}`);
+    const zone = data.zones[Number(val("bk-zone"))];
+    if (p && zone && val("bk-zone") !== "") {
+      sum += zone.fee;
+      lines.push(`• Travel (${zone.name}): ${zone.fee ? money(zone.fee) : "included"}`);
+    }
+    if (p) lines.push(`• Estimated starting total: ${money(sum)}`);
+    total.textContent = money(sum);
+
+    const d = date.value ? new Date(date.value + "T12:00:00").toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", year: "numeric" }) : "";
+    const setting = val("bk-setting");
+    const details = [
+      val("bk-event") && `Event: ${val("bk-event")}`,
+      d && `Date: ${d}`,
+      val("bk-city") && `Location: ${val("bk-city")}${setting ? ` (${setting.toLowerCase()})` : ""}`,
+      val("bk-theme") && `Theme/colors: ${val("bk-theme")}`,
+    ].filter(Boolean);
+
+    const name = val("bk-name");
+    message.value = [
+      `Hi ${data.owner}! I found Dream Party Decor's website and I'd like to request a booking:`,
+      "",
+      ...(lines.length ? lines : ["• Package: (choose a package)"]),
+      ...(details.length ? ["", ...details] : []),
+      "",
+      `I understand final pricing depends on size, design and location. Is my date available?${name ? `\n\nThank you!\n${name}` : ""}`,
+    ].join("\n");
+    return { p, d };
+  }
+
+  form.addEventListener("input", build);
+  form.addEventListener("change", build);
+  build();
+
+  // Every "Book" / "Get a quote" button on the page jumps here and preselects its package.
+  document.querySelectorAll<HTMLAnchorElement>("[data-book]").forEach((a) =>
+    a.addEventListener("click", () => {
+      if (a.dataset.package && byTitle.has(a.dataset.package)) {
+        pkg.value = a.dataset.package;
+        build();
+      }
+    }),
+  );
+
+  function valid() {
+    if (form.checkValidity()) return true;
+    hint.textContent = "Please fill in the highlighted fields first.";
+    form.reportValidity();
+    return false;
+  }
+
+  document.querySelectorAll<HTMLButtonElement>("[data-send]").forEach((btn) =>
+    btn.addEventListener("click", async () => {
+      if (!valid()) return;
+      const { p, d } = build();
+      const text = message.value;
+      const how = btn.dataset.send;
+      if (how === "sms") {
+        // "?&body=" is understood by both iOS and Android messaging apps.
+        window.location.href = `${data.sms}?&body=${encodeURIComponent(text)}`;
+        hint.textContent = "Opening your messages app…";
+      } else if (how === "email") {
+        const subject = `Booking request: ${p!.title}${d ? ` – ${d}` : ""}`;
+        window.location.href = `mailto:${data.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
+      } else {
+        try {
+          await navigator.clipboard.writeText(text);
+          hint.textContent = "Message copied! Paste it into the Instagram chat and hit send.";
+        } catch {
+          message.select();
+          hint.textContent = "Copy the message above, then paste it into the Instagram chat.";
+        }
+        window.open(data.dm, "_blank", "noopener");
+      }
+    }),
+  );
+</script>

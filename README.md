@@ -1,63 +1,42 @@
-# Dream Party Decor Contact Page
+# Dream Party Decor
 
-This is a personalized contact page for **Dream Party Decor**, built on top of a baseline design originally provided by Scrimba.
+Marketing website for **Dream Party Decor, LLC**: custom balloon garlands, backdrops, marquee letters and party rentals across the Bay Area and Central Valley (based in Castro Valley), by Andrea ([@dream.party.decor](https://www.instagram.com/dream.party.decor/)).
 
-> 💡 This project was built without AI assistance. AI was only used for documentation purposes, including this README. I believe it’s important to build a strong foundation in programming while also learning how to effectively use AI tools as part of a modern developer workflow.
+Live site: [dreampartydecor.netlify.app](https://dreampartydecor.netlify.app)
 
-## ✨ Overview
+## Stack
 
-Live Demo: [https://dreampartydecor.netlify.app](https://dreampartydecor.netlify.app)
+- [Astro](https://astro.build) (static site) + [Tailwind CSS v4](https://tailwindcss.com)
+- Deployed on Netlify (`netlify.toml`: build `npm run build`, publish `dist`)
+- Booking form (`src/components/Booking.astro`): visitors must pick a package, then it writes a ready-to-send message with an estimated starting total. They send it by text, Instagram DM (copied to the clipboard) or email. No backend needed.
 
-This project was developed for a family member with the goal of helping them expand their business and connect with more people. It provides a simple way for potential clients to reach out and submit event details directly, streamlining communication and improving accessibility.
+## Run locally
 
-The site features a clean, mobile and desktop friendly design with a contact form for users to submit their event details, including:
-- Name
-- Email
-- Phone Number
-- Event Date
+```bash
+npm install
+npm run dev       # http://localhost:4321
+npm run build     # outputs to dist/
+npm run preview
+```
 
-A thank-you message will eventually be displayed upon submission.
+## Editing content
 
-## ⚙️ How It Works
+Each piece of content lives in one file:
 
-- The contact form includes fields for name, email, phone number, and event date.
-- Once submitted (future feature), a thank-you message will be shown to the user.
-- The current version is static, with JavaScript functionality to be added for handling form submissions and storing responses.
-- The layout is built using Flexbox to ensure mobile and desktop compatibility.
+| What | File |
+|---|---|
+| Phone, email, Instagram, service area, travel fees | `src/config/site.ts` |
+| Services & starting prices | `src/data/services.ts` |
+| Gallery photos & categories | `src/data/gallery.ts` |
+| Client reviews | `src/data/testimonials.ts` |
+| FAQ | `src/data/faq.ts` |
+| Photos | `public/images/` (see the README there) |
 
-## 🛠️ Personalization
+The page sections are in `src/components/` and are assembled in `src/pages/index.astro`.
 
-While the original layout and styling were provided by Scrimba, the following changes were made:
-- Updated branding, colors, and logo to reflect **Dream Party Decor**
-- Modified copy/text to match business tone and purpose
-- Adjusted form fields for relevant event contact details
+### Before launch
 
-## 🚧 Functionality (To Be Added)
-
-- JavaScript will be added to:
-  - Capture and log form data
-  - Display a thank-you confirmation message
-  - Potentially integrate with a backend or service to store submissions
-
-## 📸 Before Customization
-
-The original Scrimba template featured a form for uploading images to create custom avatars. The design has since been repurposed for event-based contact collection.
-
-## 🗂️ File Structure (basic)
-
-- `index.html` – main structure of the contact form
-- `style.css` – styling for the layout
-- `script.js` (planned) – for handling form submissions
-
-## 📌 About Section Description
-
-A responsive contact form webpage customized for Dream Party Decor, developed using HTML and CSS to help a family member grow their business and make customer outreach easier.
-
-## 🏷️ Suggested Topics
-
-- `html`
-- `css`
-- `responsive-design`
-- `contact-form`
-- `web-development`
-- `scrimba-inspired`
+- [ ] Set the real phone number and email in `src/config/site.ts`.
+- [ ] Add real event photos (gallery, hero, About).
+- [ ] Replace the sample testimonials with real client reviews.
+- [ ] Review the starting prices. They cover materials and about $35/hr of labor, set at mid-to-upper Bay Area market rates (fall 2026).

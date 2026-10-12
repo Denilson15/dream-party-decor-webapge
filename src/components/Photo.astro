@@ -1,0 +1,17 @@
+---
+// Shows a real photo when `src` is set, otherwise a branded placeholder.
+interface Props {
+  src?: string;
+  alt: string;
+  class?: string;
+  label?: string;
+}
+const { src, alt, class: className = "", label } = Astro.props;
+---
+{src ? (
+  <img src={src} alt={alt} loading="lazy" decoding="async" class:list={["h-full w-full object-cover", className]} />
+) : (
+  <div role="img" aria-label={alt} class:list={["placeholder-photo flex h-full w-full items-end", className]}>
+    {label && <span class="m-3 rounded-full bg-white/80 px-3 py-1 text-xs font-medium text-ink-soft backdrop-blur">{label}</span>}
+  </div>
+)}
