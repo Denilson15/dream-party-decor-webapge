@@ -9,7 +9,7 @@ export const faq = [
   },
   {
     q: "What areas do you serve?",
-    a: "We're based in the East Bay and serve the surrounding Bay Area. Delivery is included locally; a small travel fee may apply for farther locations.",
+    a: "We're based in Castro Valley and serve the entire Bay Area plus the Central Valley (Tracy, Manteca and nearby). Delivery is included for Castro Valley, Hayward and San Leandro. Farther areas have a travel fee from $35 to $85, which the booking form adds to your estimate.",
   },
   {
     q: "Can I rent items without a full decor setup?",

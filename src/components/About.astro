@@ -24,10 +24,10 @@ import Photo from "./Photo.astro";
         </p>
       </div>
       <ul class="mt-8 grid gap-3 text-sm sm:grid-cols-2">
-        <li class="flex items-center gap-2"><Icon name="pin" class="h-4 w-4 text-rose-600" /> Based in the {site.serviceArea}</li>
+        <li class="flex items-center gap-2"><Icon name="pin" class="h-4 w-4 text-rose-600" /> Based in {site.homeBase}</li>
         <li class="flex items-center gap-2"><Icon name="check" class="h-4 w-4 text-rose-600" /> {site.legalName}</li>
       </ul>
-      <p class="mt-6 text-sm text-ink-soft">Proudly serving {site.serviceCities.join(", ")} & nearby.</p>
+      <p class="mt-6 text-sm text-ink-soft">Proudly serving the whole Bay Area and Central Valley: {site.serviceCities.join(", ")} & more.</p>
     </div>
   </div>
 </section>

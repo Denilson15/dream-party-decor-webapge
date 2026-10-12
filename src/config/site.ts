@@ -7,9 +7,17 @@ export const site = {
   owner: "Andrea",
   tagline: "Make your dream event come true",
   description:
-    "Custom balloon garlands, backdrops, marquee letters, a mini bounce house, candy walls and personalized party favors across the East Bay. Designed, delivered and set up by Andrea.",
-  serviceArea: "East Bay Area",
-  serviceCities: ["Oakland", "Hayward", "San Leandro", "Fremont", "Castro Valley", "Richmond", "Concord", "Walnut Creek"],
+    "Custom balloon garlands, backdrops, marquee letters, a mini bounce house, candy walls and personalized party favors across the Bay Area and Central Valley. Designed, delivered and set up by Andrea.",
+  homeBase: "Castro Valley",
+  serviceArea: "Bay Area & Central Valley",
+  serviceCities: ["Castro Valley", "Hayward", "San Leandro", "Oakland", "Fremont", "Pleasanton", "Livermore", "San Jose", "San Francisco", "Tracy", "Manteca"],
+  // Travel fee by area, measured from Castro Valley. Shown and required in the booking form.
+  travelZones: [
+    { name: "Local", fee: 0, areas: "Castro Valley, Hayward, San Leandro, San Lorenzo, Union City" },
+    { name: "Greater East Bay & Tri-Valley", fee: 35, areas: "Oakland, Berkeley, Fremont, Newark, Dublin, Pleasanton, Livermore, Walnut Creek, Concord, Richmond" },
+    { name: "SF, Peninsula & South Bay", fee: 60, areas: "San Francisco, San Mateo, Redwood City, Milpitas, Santa Clara, San Jose" },
+    { name: "Central Valley", fee: 85, areas: "Tracy, Mountain House, Lathrop, Manteca, Stockton" },
+  ],
   instagram: {
     handle: "dream.party.decor",
     url: "https://www.instagram.com/dream.party.decor/",

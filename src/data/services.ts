@@ -1,4 +1,5 @@
-// Starting prices are based on East Bay market rates (fall 2026). Adjust freely.
+// Starting prices cover materials, design and labor time (about $35/hr) and sit mid-to-upper
+// Bay Area market range (fall 2026). Travel fees by area live in src/config/site.ts.
 export type Service = {
   title: string;
   /** "package" = full decor installs (large cards); "rental" = rentals & extras (compact cards). */
@@ -29,7 +30,7 @@ export const services: Service[] = [
     group: "package",
     addon: true,
     category: "Balloons",
-    price: "$175",
+    price: "$250",
     description: "An organic, multi-size garland in your colors. Perfect over a dessert table, doorway or mantle.",
     includes: ["6–8 ft organic garland", "Custom color palette", "Delivery & install"],
   },
@@ -37,7 +38,7 @@ export const services: Service[] = [
     title: "Balloon Backdrop",
     group: "package",
     category: "Balloons",
-    price: "$325",
+    price: "$450",
     description: "A photo-ready backdrop framed by a full balloon garland, the centerpiece every guest will snap.",
     includes: ["Arch or panel backdrop", "Full balloon garland", "Setup & takedown"],
     featured: true,
@@ -46,7 +47,7 @@ export const services: Service[] = [
     title: "Signature Party Setup",
     group: "package",
     category: "Custom Decor",
-    price: "$550",
+    price: "$850",
     description: "Our all-in look: backdrop, garland and styled table so you can show up and celebrate.",
     includes: ["Backdrop + garland", "Table styling & props", "Theme design consult"],
   },
@@ -54,7 +55,7 @@ export const services: Service[] = [
     title: "Mini Bounce + Balloon Garland",
     group: "package",
     category: "Rentals",
-    price: "$275",
+    price: "$350",
     badge: "For toddlers",
     bundles: ["Mini Bounce House & Ball Pit"],
     description: "Our white toddler bounce house and ball pit, dressed up with a custom balloon garland in your theme.",
@@ -77,7 +78,7 @@ export const services: Service[] = [
     group: "rental",
     addon: true,
     category: "Rentals",
-    price: "$45",
+    price: "$50",
     unit: "/ letter",
     qty: "letters",
     defaultQty: 4,
@@ -89,7 +90,7 @@ export const services: Service[] = [
     group: "rental",
     addon: true,
     category: "Rentals",
-    price: "$150",
+    price: "$175",
     description: "A white arch wall with 8 candy dispensers and a favor-bag shelf. Candy filling quoted separately.",
     includes: ["8 dispensers + shelf", "Pairs with any garland", "Delivery & setup"],
   },
@@ -116,7 +117,7 @@ export const services: Service[] = [
     group: "rental",
     addon: true,
     category: "Banners",
-    price: "$45",
+    price: "$65",
     description: "Personalized banners with names, ages and themes, designed by Andrea to match your decor.",
     includes: ["Custom wording & design", "Theme-matched"],
   },
@@ -125,7 +126,7 @@ export const services: Service[] = [
     group: "rental",
     addon: true,
     category: "Favors",
-    price: "$3",
+    price: "$4",
     unit: "each",
     qty: "favors",
     defaultQty: 24,

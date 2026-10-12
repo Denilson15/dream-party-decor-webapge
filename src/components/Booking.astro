@@ -6,6 +6,7 @@ import Icon from "./Icon.astro";
 const data = {
   services: services.map((s) => ({ title: s.title, price: priceValue(s), qty: s.qty ?? null, defaultQty: s.defaultQty ?? 1, bundles: s.bundles ?? [] })),
   owner: site.owner,
+  zones: site.travelZones,
   sms: site.sms,
   dm: site.instagram.dm,
   email: site.email,
@@ -74,6 +75,16 @@ const label = "block text-sm font-semibold";
             <label for="bk-date" class={label}>Event date <span class="text-rose-600">*</span></label>
             <input id="bk-date" type="date" required class={field} />
           </div>
+          <div class="sm:col-span-2">
+            <label for="bk-zone" class={label}>Event area <span class="text-rose-600">*</span></label>
+            <select id="bk-zone" required class={field}>
+              <option value="">Select your area…</option>
+              {site.travelZones.map((z, i) => (
+                <option value={i}>{z.name}: {z.fee ? `+$${z.fee} travel` : "delivery included"} ({z.areas})</option>
+              ))}
+            </select>
+            <p class="mt-1.5 text-xs text-ink-soft">Travel is measured from {site.homeBase}. Outside these areas? Choose the closest one and Andrea will confirm.</p>
+          </div>
           <div>
             <label for="bk-city" class={label}>City <span class="text-rose-600">*</span></label>
             <input id="bk-city" type="text" required placeholder="e.g. Hayward" autocomplete="address-level2" class={field} />
@@ -122,7 +133,7 @@ const label = "block text-sm font-semibold";
 <script>
   type Svc = { title: string; price: number; qty: string | null; defaultQty: number; bundles: string[] };
   const data = JSON.parse(document.getElementById("booking-data")!.textContent!) as {
-    services: Svc[]; owner: string; sms: string; dm: string; email: string;
+    services: Svc[]; owner: string; zones: { name: string; fee: number }[]; sms: string; dm: string; email: string;
   };
   const byTitle = new Map(data.services.map((s) => [s.title, s]));
   const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -182,6 +193,11 @@ const label = "block text-sm font-semibold";
         return lineFor(s, n);
       });
     if (addons.length) lines.push(`• Add-ons: ${addons.join(", ")}`);
+    const zone = data.zones[Number(val("bk-zone"))];
+    if (p && zone && val("bk-zone") !== "") {
+      sum += zone.fee;
+      lines.push(`• Travel (${zone.name}): ${zone.fee ? money(zone.fee) : "included"}`);
+    }
     if (p) lines.push(`• Estimated starting total: ${money(sum)}`);
     total.textContent = money(sum);
 
