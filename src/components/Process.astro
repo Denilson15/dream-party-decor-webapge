@@ -1,0 +1,25 @@
+---
+const steps = [
+  { title: "Send us your vision", text: "DM or text your date, location, theme and colors. Inspiration photos welcome!" },
+  { title: "Get a custom design", text: "We'll put together a design and quote tailored to your space and budget." },
+  { title: "Lock in your date", text: "A deposit reserves your date. Dates fill fast on weekends and grad season." },
+  { title: "We set it all up", text: "We deliver, install and (for rentals) take down. You just enjoy the party." },
+];
+---
+<section id="how-it-works" class="py-20 sm:py-28">
+  <div class="container-site">
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <p class="eyebrow">How it works</p>
+      <h2 class="section-title">Booking is <em class="text-rose-600">easy</em></h2>
+    </div>
+    <ol class="mt-14 grid gap-6 md:grid-cols-4">
+      {steps.map((s, i) => (
+        <li class="reveal relative rounded-3xl bg-white p-6 shadow-sm ring-1 ring-blush-200">
+          <span class="grid h-12 w-12 place-items-center rounded-full bg-blush-200 font-serif text-xl font-semibold text-rose-700">{i + 1}</span>
+          <h3 class="mt-5 text-lg font-semibold">{s.title}</h3>
+          <p class="mt-2 text-sm text-ink-soft">{s.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

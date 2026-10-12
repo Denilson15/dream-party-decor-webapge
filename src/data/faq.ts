@@ -1,0 +1,26 @@
+export const faq = [
+  {
+    q: "How far in advance should I book?",
+    a: "We recommend booking 2–4 weeks ahead, and 4–6 weeks for weekends in graduation and holiday season. Last-minute? Send a DM; we'll always check!",
+  },
+  {
+    q: "How do I reserve my date?",
+    a: "Send us a DM or text with your date, location, theme and colors. We'll send a custom quote, and a non-refundable deposit locks in your date.",
+  },
+  {
+    q: "What areas do you serve?",
+    a: "We're based in the East Bay and serve the surrounding Bay Area. Delivery is included locally; a small travel fee may apply for farther locations.",
+  },
+  {
+    q: "Is setup and takedown included?",
+    a: "Yes. Every install includes delivery and setup. Takedown is included for rentals like bounce houses, marquee letters and backdrops.",
+  },
+  {
+    q: "Can you do outdoor events?",
+    a: "Absolutely. Outdoor balloons are affected by heat and wind, so we'll recommend placement and timing to keep everything looking its best.",
+  },
+  {
+    q: "Can you match my theme or colors?",
+    a: "That's our favorite part! Share your inspiration photos, invitation or color palette and we'll design around it.",
+  },
+];

@@ -1,14 +1,16 @@
 {
-  "name": "Scrim-s03mhro",
-  "description": "https://scrimba.com/frontend-path-c0j/~0k9/s091i8d4ju/head",
+  "name": "dream-party-decor",
+  "type": "module",
+  "private": true,
   "scripts": {
-    "start": "vite",
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
   "dependencies": {
-    "vite": "latest"
-  },
-  "devDependencies": {}
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.8",
+    "tailwindcss": "^4.3.3"
+  }
 }

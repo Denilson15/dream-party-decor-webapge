@@ -1,0 +1,82 @@
+---
+import { gallery, galleryCategories } from "../data/gallery";
+import { site } from "../config/site";
+import Icon from "./Icon.astro";
+import Photo from "./Photo.astro";
+---
+<section id="gallery" class="bg-white py-20 sm:py-28">
+  <div class="container-site">
+    <div class="reveal flex flex-col items-center text-center">
+      <p class="eyebrow">Our work</p>
+      <h2 class="section-title">Real parties. Real <em class="text-rose-600">wow</em> moments.</h2>
+      <div class="mt-8 flex flex-wrap justify-center gap-2" role="group" aria-label="Filter gallery">
+        {galleryCategories.map((c, i) => (
+          <button type="button" data-filter={c} aria-pressed={i === 0 ? "true" : "false"}
+            class="rounded-full border border-blush-200 px-4 py-2 text-sm font-medium transition hover:border-rose-600 aria-pressed:border-rose-600 aria-pressed:bg-rose-600 aria-pressed:text-white">
+            {c}
+          </button>
+        ))}
+      </div>
+    </div>
+    <div id="gallery-grid" class="mt-10 columns-2 gap-4 md:columns-3">
+      {gallery.map((g) => (
+        <button type="button" data-category={g.category} data-src={g.image ?? ""} data-title={g.title}
+          class:list={["gallery-item group relative mb-4 block w-full break-inside-avoid overflow-hidden rounded-2xl", g.tall ? "aspect-[3/4]" : "aspect-square"]}>
+          <Photo src={g.image} alt={g.title} class="transition duration-500 group-hover:scale-105" />
+          <span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/70 to-transparent p-4 text-left text-sm font-medium text-white opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
+            {g.title}
+          </span>
+        </button>
+      ))}
+    </div>
+    <div class="mt-10 text-center">
+      <a href={site.instagram.url} target="_blank" rel="noopener" class="btn-ghost">
+        <Icon name="instagram" class="h-4 w-4" /> See more on @{site.instagram.handle}
+      </a>
+    </div>
+  </div>
+  <dialog id="lightbox" class="m-auto max-h-[90vh] w-[min(90vw,56rem)] overflow-hidden rounded-3xl bg-transparent p-0 backdrop:bg-ink/80">
+    <div class="relative">
+      <div id="lightbox-media" class="aspect-[4/3] w-full"></div>
+      <p id="lightbox-title" class="bg-white px-5 py-3 font-serif text-lg"></p>
+      <button type="button" id="lightbox-close" class="absolute top-3 right-3 rounded-full bg-white/90 p-2 shadow" aria-label="Close">
+        <Icon name="close" class="h-5 w-5" />
+      </button>
+    </div>
+  </dialog>
+</section>
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
+  const items = document.querySelectorAll<HTMLButtonElement>(".gallery-item");
+  buttons.forEach((btn) =>
+    btn.addEventListener("click", () => {
+      const f = btn.dataset.filter;
+      buttons.forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+      items.forEach((it) => it.classList.toggle("hidden", f !== "All" && it.dataset.category !== f));
+    }),
+  );
+  const dialog = document.getElementById("lightbox") as HTMLDialogElement;
+  const media = document.getElementById("lightbox-media")!;
+  const title = document.getElementById("lightbox-title")!;
+  items.forEach((it) =>
+    it.addEventListener("click", () => {
+      const src = it.dataset.src;
+      media.replaceChildren();
+      if (src) {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = it.dataset.title ?? "";
+        img.className = "h-full w-full object-contain bg-ink";
+        media.append(img);
+      } else {
+        const ph = document.createElement("div");
+        ph.className = "placeholder-photo h-full w-full";
+        media.append(ph);
+      }
+      title.textContent = it.dataset.title ?? "";
+      dialog.showModal();
+    }),
+  );
+  document.getElementById("lightbox-close")!.addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
+</script>

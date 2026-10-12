@@ -1,0 +1,24 @@
+---
+import { testimonials } from "../data/testimonials";
+import Icon from "./Icon.astro";
+---
+<section aria-labelledby="reviews-title" class="bg-blush-100 py-20 sm:py-28">
+  <div class="container-site">
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <p class="eyebrow">Kind words</p>
+      <h2 id="reviews-title" class="section-title">Happy hosts, <em class="text-rose-600">happier</em> guests</h2>
+    </div>
+    <div class="mt-14 grid gap-6 md:grid-cols-3">
+      {testimonials.map((t) => (
+        <figure class="reveal flex flex-col rounded-3xl bg-white p-7 shadow-sm">
+          <span class="flex text-gold">{[1,2,3,4,5].map(() => <Icon name="star" class="h-4 w-4" />)}</span>
+          <blockquote class="mt-4 flex-1 font-serif text-lg leading-relaxed italic">“{t.quote}”</blockquote>
+          <figcaption class="mt-6 text-sm">
+            <span class="block font-semibold">{t.name}</span>
+            <span class="text-ink-soft">{t.event}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

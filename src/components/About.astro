@@ -1,0 +1,33 @@
+---
+import { site } from "../config/site";
+import Icon from "./Icon.astro";
+import Photo from "./Photo.astro";
+---
+<section id="about" class="py-20 sm:py-28">
+  <div class="container-site grid items-center gap-12 lg:grid-cols-2">
+    <div class="reveal relative mx-auto w-full max-w-md">
+      <div class="aspect-[4/5] overflow-hidden rounded-t-full rounded-b-3xl shadow-xl ring-8 ring-white">
+        <Photo alt={`${site.owner}, owner of ${site.name}`} label="Photo of Andrea" />
+      </div>
+      <p class="absolute -right-2 bottom-8 rotate-[-6deg] rounded-2xl bg-white px-5 py-3 font-script text-3xl text-rose-600 shadow-lg">xo, {site.owner}</p>
+    </div>
+    <div class="reveal">
+      <p class="eyebrow">Meet the designer</p>
+      <h2 class="section-title">Hi, I'm {site.owner}!</h2>
+      <div class="mt-6 space-y-4 text-ink-soft">
+        <p>
+          {site.name} started with a love for turning ordinary rooms and backyards into something magical. Today I design
+          balloon installs, backdrops and custom decor for birthdays, baby and bridal showers, graduations and every celebration in between.
+        </p>
+        <p>
+          Every setup is designed around <em>your</em> theme, colors and space, and I handle the delivery and setup so you can be a guest at your own party.
+        </p>
+      </div>
+      <ul class="mt-8 grid gap-3 text-sm sm:grid-cols-2">
+        <li class="flex items-center gap-2"><Icon name="pin" class="h-4 w-4 text-rose-600" /> Based in the {site.serviceArea}</li>
+        <li class="flex items-center gap-2"><Icon name="check" class="h-4 w-4 text-rose-600" /> {site.legalName}</li>
+      </ul>
+      <p class="mt-6 text-sm text-ink-soft">Proudly serving {site.serviceCities.join(", ")} & nearby.</p>
+    </div>
+  </div>
+</section>

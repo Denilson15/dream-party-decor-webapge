@@ -1,0 +1,30 @@
+---
+import { site } from "../config/site";
+import Icon from "./Icon.astro";
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-blush-200 bg-white pb-28 pt-14 lg:pb-14">
+  <div class="container-site grid gap-10 md:grid-cols-3">
+    <div>
+      <div class="flex items-center gap-3">
+        <img src="/images/logo.jpg" alt="" width="48" height="48" class="h-12 w-12 rounded-full" />
+        <span class="font-serif text-xl font-semibold">{site.name}</span>
+      </div>
+      <p class="mt-4 max-w-xs text-sm text-ink-soft">{site.description}</p>
+    </div>
+    <div>
+      <h2 class="font-sans text-sm font-semibold uppercase tracking-widest text-gold">Contact</h2>
+      <ul class="mt-4 space-y-3 text-sm">
+        <li><a class="flex items-center gap-2 hover:text-rose-600" href={site.instagram.url} target="_blank" rel="noopener"><Icon name="instagram" class="h-4 w-4" /> @{site.instagram.handle}</a></li>
+        <li><a class="flex items-center gap-2 hover:text-rose-600" href={site.sms}><Icon name="message" class="h-4 w-4" /> Text {site.phoneDisplay}</a></li>
+        <li><a class="flex items-center gap-2 hover:text-rose-600" href={site.tel}><Icon name="phone" class="h-4 w-4" /> Call {site.phoneDisplay}</a></li>
+        <li><a class="flex items-center gap-2 hover:text-rose-600" href={`mailto:${site.email}`}><Icon name="mail" class="h-4 w-4" /> {site.email}</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="font-sans text-sm font-semibold uppercase tracking-widest text-gold">Service area</h2>
+      <p class="mt-4 text-sm text-ink-soft">{site.serviceCities.join(" · ")} and the greater {site.serviceArea}.</p>
+    </div>
+  </div>
+  <p class="container-site mt-12 border-t border-blush-100 pt-6 text-xs text-ink-soft">© {year} {site.legalName}. All rights reserved.</p>
+</footer>
