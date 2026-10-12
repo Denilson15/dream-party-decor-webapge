@@ -7,7 +7,7 @@ export const site = {
   owner: "Andrea",
   tagline: "Make your dream event come true",
   description:
-    "Custom balloon garlands, backdrops, marquee letters and party rentals across the East Bay. Designed, delivered and set up by Andrea.",
+    "Custom balloon garlands, backdrops, marquee letters, a mini bounce house, candy walls and personalized party favors across the East Bay. Designed, delivered and set up by Andrea.",
   serviceArea: "East Bay Area",
   serviceCities: ["Oakland", "Hayward", "San Leandro", "Fremont", "Castro Valley", "Richmond", "Concord", "Walnut Creek"],
   instagram: {

@@ -4,7 +4,7 @@ import { site } from "../config/site";
 import Icon from "./Icon.astro";
 
 const data = {
-  services: services.map((s) => ({ title: s.title, price: priceValue(s), qty: s.qty ?? null, addon: !!s.addon })),
+  services: services.map((s) => ({ title: s.title, price: priceValue(s), qty: s.qty ?? null, defaultQty: s.defaultQty ?? 1, bundles: s.bundles ?? [] })),
   owner: site.owner,
   sms: site.sms,
   dm: site.instagram.dm,
@@ -30,7 +30,11 @@ const label = "block text-sm font-semibold";
           <label for="bk-package" class={label}>Package <span class="text-rose-600">*</span></label>
           <select id="bk-package" name="package" required class={field}>
             <option value="">Choose a package…</option>
-            {services.map((s) => <option value={s.title}>{s.title} · from {s.price}{s.unit ? ` ${s.unit}` : ""}</option>)}
+            {([["package", "Decor packages"], ["rental", "Rentals & extras"]] as const).map(([g, name]) => (
+              <optgroup label={name}>
+                {services.filter((s) => s.group === g).map((s) => <option value={s.title}>{s.title} · from {s.price}{s.unit ? ` ${s.unit}` : ""}</option>)}
+              </optgroup>
+            ))}
           </select>
           <div id="bk-qty-wrap" class="mt-3 hidden">
             <label for="bk-qty" class="text-sm text-ink-soft">How many <span data-qty-label></span>?</label>
@@ -50,7 +54,7 @@ const label = "block text-sm font-semibold";
                 {s.qty && (
                   <label class="mt-2 hidden items-center gap-2 text-sm text-ink-soft group-has-[:checked]:flex">
                     How many {s.qty}?
-                    <input type="number" min="1" max="200" value={s.qty === "letters" ? 4 : 10} data-addon-qty class="w-20 rounded-lg border border-blush-200 bg-white px-2 py-1" />
+                    <input type="number" min="1" max="200" value={s.defaultQty ?? 1} data-addon-qty class="w-20 rounded-lg border border-blush-200 bg-white px-2 py-1" />
                   </label>
                 )}
               </div>
@@ -116,7 +120,7 @@ const label = "block text-sm font-semibold";
 </section>
 
 <script>
-  type Svc = { title: string; price: number; qty: string | null; addon: boolean };
+  type Svc = { title: string; price: number; qty: string | null; defaultQty: number; bundles: string[] };
   const data = JSON.parse(document.getElementById("booking-data")!.textContent!) as {
     services: Svc[]; owner: string; sms: string; dm: string; email: string;
   };
@@ -144,14 +148,19 @@ const label = "block text-sm font-semibold";
     return s.qty ? `${s.title} × ${n} ${s.qty} (${money(s.price * n)})` : `${s.title} (from ${money(s.price)})`;
   }
 
+  let lastPkg = "";
   function build() {
     const p = byTitle.get(pkg.value);
+    if (pkg.value !== lastPkg) {
+      lastPkg = pkg.value;
+      if (p?.qty) qty.value = String(p.defaultQty);
+    }
     qtyWrap.classList.toggle("hidden", !p?.qty);
     if (p?.qty) qtyWrap.querySelector("[data-qty-label]")!.textContent = p.qty;
 
-    // An add-on can't duplicate the chosen package.
+    // An add-on can't duplicate the chosen package or anything it already includes.
     addonBoxes.forEach((box) => {
-      const same = box.dataset.addon === pkg.value;
+      const same = box.dataset.addon === pkg.value || !!p?.bundles.includes(box.dataset.addon!);
       box.classList.toggle("hidden", same);
       if (same) box.querySelector<HTMLInputElement>("input[type=checkbox]")!.checked = false;
     });

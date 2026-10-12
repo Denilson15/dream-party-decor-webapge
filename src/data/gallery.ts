@@ -16,7 +16,8 @@ export const gallery: GalleryItem[] = [
   { title: "Toy-themed birthday", category: "Themed", tall: true },
   { title: "Blue & white balloon arch", category: "Showers" },
   { title: "Graduation leis", category: "Graduations" },
-  { title: "White bounce house party", category: "Birthdays" },
+  { title: "Strawberry mini bounce & ball pit", category: "Birthdays" },
+  { title: "Candy dispenser wall", category: "Themed", tall: true },
   { title: "Custom banner backdrop", category: "Themed", tall: true },
   { title: "Grad celebration setup", category: "Graduations" },
 ];

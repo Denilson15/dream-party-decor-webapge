@@ -12,8 +12,12 @@ export const faq = [
     a: "We're based in the East Bay and serve the surrounding Bay Area. Delivery is included locally; a small travel fee may apply for farther locations.",
   },
   {
+    q: "Can I rent items without a full decor setup?",
+    a: "Yes! The mini bounce house, marquee letters, candy wall, arches and pedestals can all be booked on their own or added to any package.",
+  },
+  {
     q: "Is setup and takedown included?",
-    a: "Yes. Every install includes delivery and setup. Takedown is included for rentals like bounce houses, marquee letters and backdrops.",
+    a: "Yes. Every install includes delivery and setup. Takedown is included for rentals like the mini bounce house, marquee letters, candy wall and arches.",
   },
   {
     q: "Can you do outdoor events?",
