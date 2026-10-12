@@ -17,6 +17,8 @@ export type Service = {
   description: string;
   includes: string[];
   featured?: boolean;
+  /** Small highlight tag shown on the card, e.g. "For toddlers". */
+  badge?: string;
   image?: string;
 };
 
@@ -52,7 +54,8 @@ export const services: Service[] = [
     title: "Mini Bounce + Balloon Garland",
     group: "package",
     category: "Rentals",
-    price: "$350",
+    price: "$275",
+    badge: "For toddlers",
     bundles: ["Mini Bounce House & Ball Pit"],
     description: "Our white toddler bounce house and ball pit, dressed up with a custom balloon garland in your theme.",
     includes: ["Mini bounce house & ball pit", "Custom balloon garland", "Delivery, setup & takedown"],
@@ -64,8 +67,9 @@ export const services: Service[] = [
     group: "rental",
     addon: true,
     category: "Rentals",
-    price: "$200",
-    description: "A cozy 13×8 white bounce house with a slide and ball pit, made just for toddlers. Ball colors customized to your party.",
+    price: "$125",
+    badge: "For toddlers",
+    description: "A 13×8 white bounce house with a slide and ball pit, made just for toddlers (ages 1–5). Ball colors customized to your party.",
     includes: ["Slide + ball pit", "Custom ball colors", "Delivery, setup & takedown"],
   },
   {
